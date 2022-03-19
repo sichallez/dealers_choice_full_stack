@@ -57,7 +57,7 @@ League.hasMany(Club);
 
 const synAndSeed = async() => {
     await db.sync({ force: true });
-    await Promise.all([
+    const [bayern, madrid, dortmund, chelsea, psg, barcelona, liverpool, marseille, ligue1, bundesliga, laliga, premier] = await Promise.all([
         Club.create({ name: 'Bayern Munich', manager: 'Julian Nagelsmann', stadium: '', squad: '', bio: '', clubLogo: '' }),
         Club.create({ name: 'Real Madrid', manager: 'Carlo Ancelotti', stadium: '', squad: '', bio: '', clubLogo: '' }),
         Club.create({ name: 'Borussia Dortmund', manager: 'Marco Rose', stadium: '', squad: '', bio: '', clubLogo: '' }),
@@ -71,6 +71,22 @@ const synAndSeed = async() => {
         League.create({ name: 'LaLiga', country: 'Spain' }),
         League.create({ name: 'Premier League', country: 'England' })     
     ]);
+    bayern.leagueId = bundesliga.id;
+    await bayern.save();
+    madrid.leagueId = laliga.id;
+    await madrid.save();
+    dortmund.leagueId = bundesliga.id;
+    await dortmund.save();
+    chelsea.leagueId = premier.id;
+    await chelsea.save();
+    psg.leagueId = ligue1.id;
+    await psg.save();
+    barcelona.leagueId = laliga.id;
+    await barcelona.save();
+    liverpool.leagueId = premier.id;
+    await liverpool.save();
+    marseille.leagueId = ligue1.id;
+    await marseille.save();
 };
 
 module.exports = {

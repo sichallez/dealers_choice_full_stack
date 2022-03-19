@@ -7,13 +7,28 @@ const { models: { Club, League }, synAndSeed } = require('./db');
 // Require path module
 const path = require('path');
 
-// Create the GET /api route
+// Create the GET / route
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 // Create the GET /api route
-app.get('/api', (req, res, next) => {
+app.get('/api/clubs', async(req, res, next) => {
     try {
+        // This include is used for testing, but avoid using include in React application! 
+        // const clubs = await Club.findAll({
+        //     include: { model: League, as: 'league' }
+        // });
+        const clubs = await Club.findAll();
+        res.send(clubs);
+    }
+    catch (err) {
+        next(err);
+    }
+});
 
+app.get('/api/leagues', async(req, res, next) => {
+    try {
+        const leagues = await League.findAll();
+        res.send(leagues);
     }
     catch (err) {
         next(err);

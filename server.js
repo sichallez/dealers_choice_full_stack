@@ -43,7 +43,7 @@ app.get('/api/leagues', async(req, res, next) => {
 const init = async() => {
     try {
         await synAndSeed();
-        const port = process.env.PORT || 3000;
+        const port = process.env.PORT || 3001;
         app.listen(port, () => console.log(`listen on port ${port} ...`));
     }
     catch (err) {

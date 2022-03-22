@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const SingleClub = ({ clubs, match }) => {
-
+    // console.log(clubs, match);
     return (
         <div> 
-            { clubs.filter(club => club.id === match.params.id*1 ).map( club => {
+            { clubs.filter(club => club.id === +match.params.id ).map( club => {
                 return (
                     <div key={ club.id }>
                         <p> Name: {club.name}</p>

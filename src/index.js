@@ -8,28 +8,13 @@ import { HashRouter, Route, Link } from 'react-router-dom';
 import SingleClub from './SingleClub';
 
 class _App extends React.Component {
-    // constructor() {
-    //     super();
-    //     // this.state = store.getState(); // when commenting this out, then there is no this.state in this component, only this.props mapped by connect from the store
-    //     // console.log(this.state);
-    // };
-
+    
     componentDidMount() {
-        // this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-        // const { clubs } = this.props;
-        // console.log(this.state, clubs);
-        // store.dispatch(fetchClubs()); // with ONLY redux, this doesn't work, has to introuduce react-redux with connect and mapDispatch to handle axios function calls in store
         this.props.init(); // Remember init always put into componentDidMount! put in render, it will loop forever.
-        // console.log('new state:', this.state, this.props.clubs);
     }
-      
-    // componentWillUnmount() {
-    //     this.unsubscribe()
-    // }
 
     render() {
         const { clubs } = this.props;
-        // console.log(clubs);
         return (
             <HashRouter>
                 <div>

@@ -36,12 +36,6 @@ const reducer = combineReducers({clubs: clubReducer});
 //     }
 // }
 
-// Action Creators
-// Implementation with only Redux (without react-redux), should work, but didn't figure it out
-// const fetchClubs = async() => {
-//     const clubs = (await axios.get('/api/clubs')).data;
-//     return { type: LOAD, clubs };
-// };
 const fetchClubs = () => {
     return async(dispatch) => {
         const clubs = (await axios.get('/api/clubs')).data;

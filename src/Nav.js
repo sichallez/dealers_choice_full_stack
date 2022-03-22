@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { destroyClub } from './store';
 
 const Nav = ({ clubs, destroy }) => {
-    // const spain = clubs.filter(club => club.leagueId === league.id);
     return (
         <div>
             <ul>

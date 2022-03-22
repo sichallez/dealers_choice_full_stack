@@ -1,3 +1,7 @@
 node_modules
 package-lock.json
 dist
+index.js.debug
+store.js.debug
+server.js.debug
+Nav.js.debug

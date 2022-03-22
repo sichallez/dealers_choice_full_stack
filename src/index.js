@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import store, { fetchClubs } from './store';
 import Nav from './Nav';
+import Create from './Create';
 
 class _App extends React.Component {
     // constructor() {
@@ -26,11 +27,12 @@ class _App extends React.Component {
 
     render() {
         const { clubs } = this.props;
-        console.log(clubs);
+        // console.log(clubs);
         return (
             <div>
                 <h1>European Soccer Clubs</h1>
                 <Nav />
+                <Create />
             </div>
             
         );

@@ -6,10 +6,12 @@ const { models: { Club, League }, synAndSeed } = require('./db');
 
 // Require path module
 const path = require('path');
-const exp = require('constants');
 
 // Require static route to load webpack generated js script
 app.use('/dist', express.static(path.join(__dirname, '/dist')));
+
+// JSON required for parsing req.body?
+app.use(express.json());
 
 // Create the GET / route
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
@@ -45,6 +47,17 @@ app.delete('/api/clubs/:id', async(req, res, next) => {
         const club = await Club.findByPk(req.params.id);
         await club.destroy();
         res.sendStatus(204);
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
+// POST route
+app.post('/api/clubs', async(req, res, next) => {
+    try {
+        console.log(req.body);        
+        res.status(201).send(await Club.create({name: req.body.newClub}));
     }
     catch (err) {
         next(err);

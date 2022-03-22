@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 
 const LOAD = 'LOAD';
 const DESTORY_CLUB = 'DESTORY_CLUB';
+const CREATE_CLUB = 'CREATE_CLUB';
 
 const clubReducer = (clubs = [], action) => {
     switch (action.type) {
@@ -11,6 +12,8 @@ const clubReducer = (clubs = [], action) => {
             return action.clubs;
         case DESTORY_CLUB:
             return clubs.filter(club => club.id !== action.club.id);
+        case CREATE_CLUB:
+            return [...clubs, action.club];
         default:
             return clubs;
     }
@@ -53,7 +56,15 @@ const destroyClub = (club) => {
     };
 };
 
+const createClub = newClub => {
+    return async(dispatch) => {
+        const club = (await axios.post('/api/clubs', {newClub})).data
+        console.log(club);
+        dispatch({type: CREATE_CLUB, club});
+    }
+} 
+
 const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
-export { fetchClubs, destroyClub }
+export { fetchClubs, destroyClub, createClub }

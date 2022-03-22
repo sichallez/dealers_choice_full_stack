@@ -10,11 +10,11 @@ const Club = db.define('club', {
 
     manager: {
         type: Sequelize.STRING,
-        unique: true,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        // unique: true,
+        // allowNull: false,
+        // validate: {
+        //     notEmpty: true
+        // }
     },
 
     squad: {

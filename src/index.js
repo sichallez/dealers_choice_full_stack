@@ -6,6 +6,7 @@ import Nav from './Nav';
 import Create from './Create';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import SingleClub from './SingleClub';
+import AllClub from './AllClub';
 
 class _App extends React.Component {
     
@@ -19,8 +20,8 @@ class _App extends React.Component {
             <HashRouter>
                 <div>
                     <h1>European Soccer Clubs</h1>
-                    {/* <Nav /> */}
-                    <Route exact path='/clubs' component={ Nav } />
+                    <Nav />
+                    <Route exact path='/clubs' component={ AllClub } />
                     <Route path='/clubs/:id' component={ SingleClub }/>
                     <Create />
                 </div>

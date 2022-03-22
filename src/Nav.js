@@ -1,19 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { destroyClub } from './store';
+import { Link } from 'react-router-dom';
 
-const Nav = ({ clubs, destroy }) => {
+const Nav = ({ clubs, view, destroy }) => {
     return (
         <div>
-            <ul>
-                { clubs.map(club => {
-                    return (
-                        <li key={ club.id }>
-                            { club.name }
-                            <button onClick={ () => destroy(club) }>Delete</button>
-                        </li>)
-                }) }
-            </ul>
+            <h2>Welcome! Please click on the Show All Clubs tab to view all soccer clubs on file</h2>
+            <nav>
+                <Link to='/clubs'>Show All Clubs ({ clubs.length })</Link>
+            </nav>
         </div>
     )
 };

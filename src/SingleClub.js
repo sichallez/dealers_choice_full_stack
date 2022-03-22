@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const SingleClub = ({ clubs, match }) => {
-    // console.log(clubs, match);
+    console.log(clubs, match);
     return (
         <div> 
             { clubs.filter(club => club.id === +match.params.id ).map( club => {

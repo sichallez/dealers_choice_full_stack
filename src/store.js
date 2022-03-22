@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 const LOAD = 'LOAD';
 const DESTORY_CLUB = 'DESTORY_CLUB';
 const CREATE_CLUB = 'CREATE_CLUB';
+const SET_VIEW = 'SET_VIEW';
 
 const clubReducer = (clubs = [], action) => {
     switch (action.type) {
@@ -19,7 +20,19 @@ const clubReducer = (clubs = [], action) => {
     }
 };
 
-const reducer = combineReducers({clubs: clubReducer});
+const viewReducer = (view = '', action) => {
+    switch (action.type) {
+        case SET_VIEW:
+            return action.view;
+        default:
+            return view;
+    }
+};
+
+const reducer = combineReducers({
+    clubs: clubReducer,
+    view: viewReducer
+});
 
 // This code with single reducer didn't work out, something must be wrong, check it later!
 // const reducer = (state = { clubs: [] }, action) => {
@@ -56,7 +69,7 @@ const createClub = newClub => {
         console.log(club);
         dispatch({type: CREATE_CLUB, club});
     }
-} 
+};
 
 const store = createStore(reducer, applyMiddleware(thunk));
 

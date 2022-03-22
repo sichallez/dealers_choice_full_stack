@@ -29,6 +29,28 @@ app.get('/api/clubs', async(req, res, next) => {
     }
 });
 
+app.get('/api/clubs/:id', async(req, res, next) => {
+    try {
+        const club = await Club.findByPk(req.params.id);
+        res.send(club);
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
+// Delete route
+app.delete('/api/clubs/:id', async(req, res, next) => {
+    try {
+        const club = await Club.findByPk(req.params.id);
+        await club.destroy();
+        res.sendStatus(204);
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
 app.get('/api/leagues', async(req, res, next) => {
     try {
         const leagues = await League.findAll();
@@ -43,7 +65,7 @@ app.get('/api/leagues', async(req, res, next) => {
 const init = async() => {
     try {
         await synAndSeed();
-        const port = process.env.PORT || 3001;
+        const port = process.env.PORT || 3000;
         app.listen(port, () => console.log(`listen on port ${port} ...`));
     }
     catch (err) {

@@ -1,16 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { destroyClub } from './store';
 
-const Nav = ({ clubs }) => {
+const Nav = ({ clubs, destroy }) => {
+    // const spain = clubs.filter(club => club.leagueId === league.id);
     return (
         <div>
             <ul>
                 { clubs.map(club => {
-                    return <li key={ club.id }>{ club.name }</li>
+                    return (
+                        <li key={ club.id }>
+                            { club.name }
+                            <button onClick={ () => destroy(club) }>Delete</button>
+                        </li>)
                 }) }
             </ul>
         </div>
     )
 };
 
-export default connect(state => state)(Nav);
+const mapDispatchToProps = dispatch => {
+    return {
+        destroy: (club) => dispatch(destroyClub(club))
+    }
+};
+
+export default connect(state => state, mapDispatchToProps)(Nav);

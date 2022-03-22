@@ -30,12 +30,7 @@ class _App extends React.Component {
         return (
             <div>
                 <h1>European Soccer Clubs</h1>
-                {/* <Nav /> */}
-                <ul>
-                    { clubs.map(club => {
-                        return <li key={ club.id }>{ club.name }</li>
-                    }) }
-            </ul>
+                <Nav />
             </div>
             
         );

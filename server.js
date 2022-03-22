@@ -6,6 +6,10 @@ const { models: { Club, League }, synAndSeed } = require('./db');
 
 // Require path module
 const path = require('path');
+const exp = require('constants');
+
+// Require static route to load webpack generated js script
+app.use('/dist', express.static(path.join(__dirname, '/dist')));
 
 // Create the GET / route
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));

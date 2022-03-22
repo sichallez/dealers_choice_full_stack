@@ -4,6 +4,8 @@ import { Provider, connect } from 'react-redux';
 import store, { fetchClubs } from './store';
 import Nav from './Nav';
 import Create from './Create';
+import { HashRouter, Route, Link } from 'react-router-dom';
+import SingleClub from './SingleClub';
 
 class _App extends React.Component {
     // constructor() {
@@ -29,12 +31,15 @@ class _App extends React.Component {
         const { clubs } = this.props;
         // console.log(clubs);
         return (
-            <div>
-                <h1>European Soccer Clubs</h1>
-                <Nav />
-                <Create />
-            </div>
-            
+            <HashRouter>
+                <div>
+                    <h1>European Soccer Clubs</h1>
+                    {/* <Nav /> */}
+                    <Route exact path='/clubs' component={ Nav } />
+                    <Route path='/clubs/:id' component={ SingleClub }/>
+                    <Create />
+                </div>
+            </HashRouter>
         );
     };
 
